@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Measure runtime for wait_n."""
+"""Measure the average runtime of concurrent coroutines."""
 
 import asyncio
 import time
@@ -7,14 +7,12 @@ import time
 wait_n = __import__('1-concurrent_coroutines').wait_n
 
 
-def measure_time(n, max_delay):
-    """Return average execution time per coroutine."""
+def measure_time(n: int, max_delay: int) -> float:
+    """Return the average runtime per coroutine."""
     start = time.time()
 
     asyncio.run(wait_n(n, max_delay))
 
     end = time.time()
 
-    total_time = end - start
-
-    return total_time / n
+    return (end - start) / n
